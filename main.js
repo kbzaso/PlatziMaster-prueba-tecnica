@@ -18,7 +18,7 @@ function getRandom(arr, n) {
 
 async function getData() {
   const resp = await fetch(
-    'https://platzi-master-api.herokuapp.com/preguntas',
+    'https://platzi-master-api.herokuapp.com/preguntas/',
     {
       mode: 'cors',
       headers: {
