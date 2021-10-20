@@ -17,15 +17,12 @@ function getRandom(arr, n) {
 }
 
 async function getData() {
-  const resp = await fetch(
-    'https://platzi-master-api.herokuapp.com/preguntas/',
-    {
-      mode: 'cors',
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-      },
-    }
-  );
+  const resp = await fetch('http://localhost:3000/preguntas', {
+    mode: 'cors',
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+    },
+  });
   let data = await resp.json();
   data = await getRandom(data, 5);
   return data;
@@ -115,7 +112,7 @@ getData()
         warning.innerHTML = `<h2>Quedaron preguntas sin responder, vuelve a intentarlo.</h2>`;
       } else if (score === 5) {
         modalBg.classList.add('bg-active');
-        resultado.innerHTML = `Buenas: <b>${buenas}</b> ✅ | Malas: <b>${malas}</b> ❌`;
+        resultado.innerHTML = `Buenas: <b>${buenas}</b> ✅ <br /> Malas: <b>${malas}</b> ❌`;
       }
     });
   })

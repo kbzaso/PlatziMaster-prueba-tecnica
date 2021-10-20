@@ -39,6 +39,9 @@ input {
   letter-spacing: 0.384rem;
   font-size: 2rem;
   -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: white;
 }
 input:hover {
   background-color: #f24405;
@@ -88,7 +91,7 @@ span {
 
 #resultado {
   font-weight: 500;
-  font-size: 2rem;
+  font-size: 6rem;
   margin: 2rem 0;
   width: 100%;
   text-align: center;
@@ -127,6 +130,19 @@ input[type='radio'] {
   background-color: white;
 }
 
+input[type='radio']:checked {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: #01261f;
+}
+input[type='radio']:hover:checked {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: #f24405;
+}
+
 fieldset {
   border: none;
   outline: none;
@@ -146,6 +162,18 @@ footer {
 #reset {
   margin-bottom: 2rem;
   width: 100%;
+}
+
+#submit {
+  background-color: #f27405;
+}
+
+#submit:hover {
+  background-color: #f24405;
+}
+
+#submit:active {
+  background-color: #01261f;
 }
 
 #reset {
