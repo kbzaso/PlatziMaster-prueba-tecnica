@@ -38,6 +38,7 @@ input {
   text-transform: uppercase;
   letter-spacing: 0.384rem;
   font-size: 2rem;
+  -webkit-appearance: none;
 }
 input:hover {
   background-color: #f24405;
@@ -77,7 +78,7 @@ h2 {
   right: 0;
 }
 .heading h2 {
-  width: 80%;
+  width: 70%;
 }
 
 span {
@@ -122,6 +123,8 @@ input[type='radio'] {
   height: 1.8rem;
   width: 1.8rem;
   outline: none;
+  -webkit-appearance: none;
+  background-color: white;
 }
 
 fieldset {
