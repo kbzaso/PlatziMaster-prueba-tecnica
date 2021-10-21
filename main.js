@@ -1,17 +1,21 @@
-const p1 = document.querySelector('.pregunta-uno');
+const questionSection = document.querySelector('.question-section');
 const resultado = document.getElementById('resultado');
-const enviar = document.querySelector('.enviar');
+const modalBg = document.querySelector('.modal-bg');
+const warning = document.getElementById('warning');
+const submitInput = document.getElementById('submit');
+const resetInput = document.getElementById('reset');
 
-function getRandom(arr, n) {
-  var result = new Array(n),
-    len = arr.length,
-    taken = new Array(len);
-  if (n > len)
+// Fs that delivers 5 random questions
+function getRandom(array, num) {
+  var result = new Array(num),
+    length = array.length,
+    taken = new Array(length);
+  if (num > length)
     throw new RangeError('getRandom: more elements taken than available');
-  while (n--) {
-    var x = Math.floor(Math.random() * len);
-    result[n] = arr[x in taken ? taken[x] : x];
-    taken[x] = --len in taken ? taken[len] : len;
+  while (num--) {
+    var x = Math.floor(Math.random() * length);
+    result[num] = array[x in taken ? taken[x] : x];
+    taken[x] = --length in taken ? taken[length] : length;
   }
   return result;
 }
@@ -69,19 +73,16 @@ getData()
       </div>
       `;
 
-      let pr = document.createElement('section');
-      pr.innerHTML = template;
-      p1.appendChild(pr);
+      // Print question in html
+      let print = document.createElement('section');
+      print.innerHTML = template;
+      questionSection.appendChild(print);
     }
   })
   .then(() => {
-    const submitInput = document.getElementById('submit');
-    const resetInput = document.getElementById('reset');
-    var inputSelector = document.querySelectorAll('input[type=radio]');
-    const modalBg = document.querySelector('.modal-bg');
-    const warning = document.getElementById('warning');
-    var buenas = 0;
-    var malas = 0;
+    let inputSelector = document.querySelectorAll('input[type=radio]');
+    let correctAnswers = 0;
+    let incorrectAnswers = 0;
 
     resetInput.addEventListener('click', function () {
       resultado.innerHTML = ' ';
@@ -91,6 +92,7 @@ getData()
       e.preventDefault();
       inputSelector.forEach((radio) => {
         if (radio.checked) {
+          // Correct answers
           if (
             radio.value == 'Ratatatatatatata' ||
             radio.value == 'Las rodillas' ||
@@ -103,19 +105,20 @@ getData()
             radio.value == 'El silencio' ||
             radio.value == 'La letra Y'
           ) {
-            buenas++;
+            correctAnswers++;
           } else {
-            malas++;
+            incorrectAnswers++;
           }
         }
       });
-      const score = malas + buenas;
+      const score = incorrectAnswers + correctAnswers;
+      // Check if all questions are answered
       if (score < 5) {
         modalBg.classList.add('bg-active');
         warning.innerHTML = `<h2>Quedaron preguntas sin responder, vuelve a intentarlo.</h2>`;
       } else if (score === 5) {
         modalBg.classList.add('bg-active');
-        resultado.innerHTML = `Buenas: <b>${buenas}</b> ✅ <br /> Malas: <b>${malas}</b> ❌`;
+        resultado.innerHTML = `Buenas: <b>${correctAnswers}</b> ✅ <br /> Malas: <b>${incorrectAnswers}</b> ❌`;
       }
     });
   })
